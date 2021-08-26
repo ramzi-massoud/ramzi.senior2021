@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+
+
+
+  <title>Announcement</title>
+  <style>
+         nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 70px;
+            width: 100%;
+            box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+        }
+    table th  {
+    height: 50px;
+    background: #549EA0;
+    font-size: 16px;
+    border-radius: 50px;
+    
+	 box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}    
+
+* {
+	 font-family:  sans-serif;
+}
+
+
+ table tr {
+	 
+	 box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+ }
+  </style>
+</head>
+
+<body>
+
+
+  <nav style="background-color: #03b2c9;" class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="{% static '/images/lebanon-flag.png' %}" alt="" width="50" height="45"
+          class="d-inline-block align-text-top" />
+      </a>
+      <a class="navbar-brand" style="cursor:default; font-size: 23px; color: white;" href="#">School Managment
+        System</a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" style="color: white;" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="color: white;" aria-current="page" href="{% url 'list_courses' %}">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="color: white;" aria-current="page" href="{% url 'announcements' %}">Announcement</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="color: white;" aria-current="page" href="{% url 'contactView' %}">Contact us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="color: white;" aria-current="page" href="{% url 'logout_request' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br />
+<h3 style="color: black" class="text-center"><strong>All Availabe Courses:</strong></h3>
+<table id="vacation_table"  class="table table-bordered border-primary">
+  <thead>
+    <tr scope="row">
+      <th>Course Code:</th>
+      <th>Description:</th>
+      <th>Department:</th>
+      <th>Price:</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for course in Courses %}
+    <tr>
+      <td>{{course.code}}</td>
+      <td>{{course.courses_name}}</td>
+      <td>{{course.department}}</td>
+      <td>{{course.price}}  
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+  
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.24/r-2.2.7/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.24/r-2.2.7/datatables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+      //responsive : true,
+
+      $("#vacation_table").DataTable({
+        responsive: true,
+      });
+    });
+
+  </script>
+</body>
+
+</html>
